@@ -28,13 +28,13 @@ private:
 template <int blockSize> class SubstitutionPermutationNetwork
 {
 public:
-	SubstitutionPermutationNetwork(bitset<blockSize> key, SBox, PBox<blockSize>);
+	SubstitutionPermutationNetwork(bitset<32> key, SBox, PBox<blockSize>);
 	bitset<blockSize> encrypt(bitset<blockSize> plaintext);
 	bitset<blockSize> decrypt(bitset<blockSize> ciphertext);
-	void setKey(bitset<blockSize> newKey);
 
+	void setKey(bitset<blockSize> newKey);
 private:
-	bitset<blockSize> key;
+	bitset<32> key;
 	SBox sBox;
 	PBox<blockSize> pBox;
 

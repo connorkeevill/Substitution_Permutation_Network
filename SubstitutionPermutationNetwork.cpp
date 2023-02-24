@@ -1,7 +1,7 @@
 #include "SubstitutionPermutationNetwork.h"
 
 template<int blockSize>
-SubstitutionPermutationNetwork<blockSize>::SubstitutionPermutationNetwork(bitset<blockSize> key,
+SubstitutionPermutationNetwork<blockSize>::SubstitutionPermutationNetwork(bitset<32> key,
 																		  SBox sBox,
 																		  PBox<blockSize> pBox)
 {
