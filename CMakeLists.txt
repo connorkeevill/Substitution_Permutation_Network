@@ -3,4 +3,4 @@ project(Substitution_Permutation_Network)
 
 set(CMAKE_CXX_STANDARD 23)
 
-add_executable(Substitution_Permutation_Network main.cpp)
+add_executable(Substitution_Permutation_Network main.cpp SubstitutionPermutationNetwork.cpp)
