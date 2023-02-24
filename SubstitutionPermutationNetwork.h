@@ -25,21 +25,22 @@ private:
 };
 
 
-template <int blockSize> class SubstitutionPermutationNetwork
+template <int blockSize, int keySize> class SubstitutionPermutationNetwork
 {
 public:
-	SubstitutionPermutationNetwork(bitset<32> key, SBox, PBox<blockSize>);
+	SubstitutionPermutationNetwork(bitset<keySize> key, SBox, PBox<blockSize>);
 	bitset<blockSize> encrypt(bitset<blockSize> plaintext);
 	bitset<blockSize> decrypt(bitset<blockSize> ciphertext);
-
 	void setKey(bitset<blockSize> newKey);
 private:
-	bitset<32> key;
+	bitset<keySize> key;
 	SBox sBox;
 	PBox<blockSize> pBox;
 
-	void permute(bitset<blockSize> &);
+	bitset<blockSize> getRoundKey(int round);
+	void whiten(bitset<blockSize> &state, bitset<blockSize> &key);
 	void substitute(bitset<blockSize> &);
+	void permute(bitset<blockSize> &);
 };
 
 
