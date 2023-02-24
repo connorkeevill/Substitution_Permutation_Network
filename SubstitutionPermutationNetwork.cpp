@@ -25,7 +25,7 @@ bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::encrypt(bi
 		permute(plaintext);
 	}
 
-	whiten(plaintext, getRoundKey(rounds);
+	whiten(plaintext, getRoundKey(rounds));
 	substitue(plaintext);
 
 	return plaintext;
