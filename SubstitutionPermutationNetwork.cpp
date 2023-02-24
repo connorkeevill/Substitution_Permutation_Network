@@ -15,7 +15,7 @@ SubstitutionPermutationNetwork<blockSize, keySize>::SubstitutionPermutationNetwo
 template<int blockSize, int keySize>
 bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::encrypt(bitset<blockSize> plaintext)
 {
-	int rounds = (key.count() - blockSize);
+	int rounds = (key.count() - blockSize) / 4;
 
 	for(int round = 0; round < rounds; round++)
 	{
@@ -29,6 +29,19 @@ bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::encrypt(bi
 	substitue(plaintext);
 
 	return plaintext;
+}
+
+template<int blockSize, int keySize>
+bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::getRoundKey(int round)
+{
+	bitset<blockSize> roundKey;
+
+	for(int i = 0; i < blockSize; i++)
+	{
+		roundKey[i] = key[(i + round * 4) % keySize];
+	}
+
+	return roundKey;
 }
 
 template<int blockSize, int keySize>
