@@ -82,3 +82,23 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::whiten(bitset<blockSize
 {
 	state ^= roundkey;
 }
+
+/**
+ * Breaks the state up into (blockSize / 4) nibbles and runs them all through the sBox.
+ *
+ * @param state the state to substitute.
+ */
+template<int blockSize, int keySize>
+void SubstitutionPermutationNetwork<blockSize, keySize>::substitute(bitset<blockSize> &state)
+{
+	bitset<4> nibble;
+
+	for(int i = 0; i < blockSize; i += 4)
+	{
+		for(int j = 0; j < 4; j++) nibble[j] = state[i + j];
+
+		sBox.substitute(nibble);
+
+		for(int j = 0; j < 4; j++) state[i + j] = state[j];
+	}
+}
