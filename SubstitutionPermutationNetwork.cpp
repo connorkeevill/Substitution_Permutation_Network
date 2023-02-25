@@ -113,3 +113,10 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::permute(bitset<blockSiz
 {
 	pBox.permute(state);
 }
+
+SBox::SBox(map<char, char> mappings)
+{
+	for (auto [key, val] : mappings) {
+		this->mappings[bitset<4>(key)] = bitset<4>(val);
+	}
+}

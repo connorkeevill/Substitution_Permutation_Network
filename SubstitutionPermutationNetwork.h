@@ -12,7 +12,9 @@ public:
 	SBox(map<char, char> mappings);
 	void substitute(bitset<4> &state);
 private:
-	map<bitset<4>, bitset<4>> mappings;
+	// I don't fully understand what this line does; stackoverflow suggested it as a fix: https://stackoverflow.com/questions/37301160/invalid-operands-to-binary-expression-const-and-const
+	struct comp { bool operator()(const bitset<4>& a, const bitset<4>& b) const { return a.to_ulong() < b.to_ulong(); }};
+	map<bitset<4>, bitset<4>, comp> mappings;
 };
 
 template <int blockSize> class PBox
