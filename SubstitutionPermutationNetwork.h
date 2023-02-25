@@ -9,7 +9,7 @@ using namespace std;
 class SBox
 {
 public:
-	SBox(map<char, char> mappings);
+	SBox(map<int, int> mappings);
 	void substitute(bitset<4> &state);
 private:
 	// I don't fully understand what this line does; stackoverflow suggested it as a fix: https://stackoverflow.com/questions/37301160/invalid-operands-to-binary-expression-const-and-const

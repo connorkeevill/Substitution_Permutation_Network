@@ -115,11 +115,11 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::permute(bitset<blockSiz
 }
 
 /**
- * Constructor which converts given char-to-char mapping to a bitset to bitset mapping.
+ * Constructor which converts given int-to-int mapping to a bitset to bitset mapping.
  *
- * @param mappings a char to char map which describes the s-box
+ * @param mappings an int-to-int map which describes the s-box
  */
-SBox::SBox(map<char, char> mappings)
+SBox::SBox(map<int, int> mappings)
 {
 	for (auto [key, val] : mappings) {
 		this->mappings[bitset<4>(key)] = bitset<4>(val);
