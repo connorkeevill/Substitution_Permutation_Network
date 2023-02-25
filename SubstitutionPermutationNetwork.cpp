@@ -84,7 +84,7 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::whiten(bitset<blockSize
 }
 
 /**
- * Breaks the state up into (blockSize / 4) nibbles and runs them all through the sBox.
+ * Breaks the state up into (blockSize / 4) nibbles and runs them all through the s-box.
  *
  * @param state the state to substitute.
  */
@@ -101,4 +101,15 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::substitute(bitset<block
 
 		for(int j = 0; j < 4; j++) state[i + j] = state[j];
 	}
+}
+
+/**
+ * Puts the state through the p-box
+ *
+ * @param state the state to permute.
+ */
+template<int blockSize, int keySize>
+void SubstitutionPermutationNetwork<blockSize, keySize>::permute(bitset<blockSize> &state)
+{
+	pBox.permute(state);
 }
