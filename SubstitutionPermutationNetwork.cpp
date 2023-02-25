@@ -115,7 +115,7 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::permute(bitset<blockSiz
 }
 
 /**
- * Constructor
+ * Constructor which converts given char-to-char mapping to a bitset to bitset mapping.
  *
  * @param mappings a char to char map which describes the s-box
  */
@@ -134,4 +134,32 @@ SBox::SBox(map<char, char> mappings)
 void SBox::substitute(bitset<4> &state)
 {
 	state = mappings[state];
+}
+
+/**
+ * Constructor which assigns to the mappings for the permutations.
+ *
+ * @tparam blockSize the block size of the SPN that the permutation is in.
+ * @param mappings the permutation mappings.
+ */
+template<int blockSize>
+PBox<blockSize>::PBox(const int mappings[blockSize])
+{
+	this->mappings = mappings;
+}
+
+/**
+ * Permutes the bits in the given state.
+ *
+ * @param state the state to permute.
+ */
+template<int blockSize>
+void PBox<blockSize>::permute(bitset<blockSize> &state)
+{
+	bitset<blockSize> old = state;
+
+	for(int bit = 0; bit < blockSize; bit++)
+	{
+		state[bit] = old[mappings[bit]];
+	}
 }

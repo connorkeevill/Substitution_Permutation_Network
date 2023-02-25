@@ -20,10 +20,10 @@ private:
 template <int blockSize> class PBox
 {
 public:
-	PBox(map<bitset<blockSize>, bitset<blockSize>> mappings);
+	PBox(const int mappings[blockSize]);
 	void permute(bitset<blockSize> &state);
 private:
-	map<bitset<blockSize>, bitset<blockSize>> mappings;
+	int mappings[blockSize];
 };
 
 
