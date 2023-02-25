@@ -124,7 +124,7 @@ bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::getRoundKe
 {
 	bitset<blockSize> roundKey;
 
-	for(int i = blockSize; i >= 0; i--)
+	for(int i = blockSize - 1; i >= 0; i--)
 	{
 		roundKey[i] = key[(blockSize + (i - (round * 4))) % keySize];
 	}
@@ -157,11 +157,11 @@ bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::substitute
 
 	for(int i = 0; i < blockSize; i += 4)
 	{
-		for(int j = 0; j < 4; j++) nibble[j] = state[i + j];
+		for(int j = 3; j >= 0; j--) nibble[j] = state[i + j];
 
 		sBox.substitute(nibble);
 
-		for(int j = 0; j < 4; j++) state[i + j] = state[j];
+		for(int j = 3; j >= 0; j--) state[i + j] = nibble[j];
 	}
 
 	return state;
