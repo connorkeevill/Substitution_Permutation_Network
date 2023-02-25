@@ -114,9 +114,24 @@ void SubstitutionPermutationNetwork<blockSize, keySize>::permute(bitset<blockSiz
 	pBox.permute(state);
 }
 
+/**
+ * Constructor
+ *
+ * @param mappings a char to char map which describes the s-box
+ */
 SBox::SBox(map<char, char> mappings)
 {
 	for (auto [key, val] : mappings) {
 		this->mappings[bitset<4>(key)] = bitset<4>(val);
 	}
+}
+
+/**
+ * Performs a substitution on the given 4 bits of state.
+ *
+ * @param state 4 bits of state to be substituted.
+ */
+void SBox::substitute(bitset<4> &state)
+{
+	state = mappings[state];
 }
