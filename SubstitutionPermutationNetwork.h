@@ -84,15 +84,16 @@ template<int blockSize, int keySize>
 bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::encrypt(bitset<blockSize> plaintext)
 {
 	// Each round key will move through the key by four bits for each round. This expression gets the number of rounds
-	// which will happen under this key schedule.
+	// which will happen under this key schedule. Note that the actual number of rounds will be this expression + 1, due
+	// to the fact that we will be indexing from 0.
 	int rounds = (key.size() - blockSize) / 4;
 
-	cout << rounds << " rounds" << endl;
+	cout << rounds + 1 << " rounds" << endl;
 
 	bitset<blockSize> state = plaintext;
 
 	// Perform the iterations over the network.
-	for(int round = 0; round < rounds - 1; round++)
+	for(int round = 0; round < rounds; round++)
 	{
 		cout << "State at the start of round: " << state.to_string() << endl;
 		cout << "Round " << round << endl;
@@ -106,6 +107,7 @@ bitset<blockSize> SubstitutionPermutationNetwork<blockSize, keySize>::encrypt(bi
 		cout << "State after p: " << state.to_string() << endl;
 	}
 
+	cout << "Round: " << rounds << endl;
 	state = whiten(state, getRoundKey(rounds));
 	state = substitute(state);
 
