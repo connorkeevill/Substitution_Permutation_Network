@@ -6,10 +6,6 @@ int main()
 	const int BLOCKSIZE = 16;
 	const int KEYSIZE = 32;
 
-	std::cout << "Hello, World!" << std::endl;
-
-	std::cout << std::bitset<10>{0b0101}.to_string() << endl;
-
 	SBox sbox {
 		{{0x0, 0x4},
 		 {0x1, 0x1},
